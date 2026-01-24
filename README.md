@@ -1,2 +1,1 @@
-# QR-code-
-Scan for a compliment
+# daily-dose-2.0
