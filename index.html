@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scan for a Compliment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    #box {
+      max-width: 400px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box">
+    <h1 id="compliment">You’re better at this than you think.</h1>
+    <button onclick="newCompliment()">Scan again</button>
+  </div>
+
+  <script>
+    const compliments = [
+      "You’re better at this than you think.",
+      "People feel calmer when you’re around.",
+      "You have quiet confidence — it shows.",
+      "You make good decisions under pressure.",
+      "You’re more capable than you give yourself credit for.",
+      "You scanning this proves curiosity. That’s a strength."
+    ];
+
+    function newCompliment() {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      document.getElementById("compliment").textContent = compliments[randomIndex];
+    }
+
+    newCompliment();
+  </script>
+
+</body>
+</html>
