@@ -32,12 +32,12 @@
 <body>
 
   <div id="box">
-    <h1 id="compliment">You’re better at this than you think.</h1>
-    <button onclick="newCompliment()">hit me</button>
+    <h1 id="fact">You’re better at this than you think.</h1>
+    <button onclick="newFact()">hit me</button>
   </div>
 
   <script>
-    const compliments = [
+    const facts = [
 "Octopuses have three hearts and blue blood",
 "Bananas are berries, but strawberries aren’t",
 "A group of flamingos is called a flamboyance",
@@ -90,16 +90,17 @@
 "A group of kangaroos is called a mob"
     ];
 
-    function newCompliment() {
-      const randomIndex = Math.floor(Math.random() * compliments.length);
-      document.getElementById("compliment").textContent = compliments[randomIndex];
+    function newFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      document.getElementById("compliment").textContent = facts[randomIndex];
     }
 
-    newCompliment();
+    newFact();
   </script>
 
 </body>
 </html>
+
 
 
 
