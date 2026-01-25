@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>fact of the day</title>
+  <title>Surprise</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
-      font-family: system-ui, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: #111;
       color: #fff;
       display: flex;
@@ -16,15 +17,28 @@
       text-align: center;
       padding: 20px;
     }
+
     #box {
-      max-width: 400px;
+      max-width: 460px;
     }
+
+    h1 {
+      line-height: 1.4;
+      margin-bottom: 24px;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    h1.fade {
+      opacity: 0;
+    }
+
     button {
-      margin-top: 20px;
+      margin: 6px;
       padding: 10px 16px;
-      font-size: 16px;
+      font-size: 15px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
     }
   </style>
@@ -32,70 +46,108 @@
 <body>
 
   <div id="box">
-    <h1 id="fact">You’re better at this than you think.</h1>
-    <button onclick="newFact()">surprise me</button>
+    <h1 id="text">Choose a vibe</h1>
+
+    <button onclick="showMessage(jokes)">😄 Make me laugh</button>
+    <button onclick="showMessage(lifts)">💛 Lift me up</button>
+    <button onclick="showMessage(facts)">🧠 Fun fact</button>
   </div>
 
   <script>
-    const facts = [
-"Octopuses have three hearts and blue blood",
-"Bananas are berries, but strawberries aren’t",
-"A group of flamingos is called a flamboyance",
-"Honey never spoils and can last thousands of years",
-"Sea otters hold hands while sleeping to keep from drifting apart",
-"Sharks existed before trees",
-"A day on Venus is longer than a year on Venus",
-"Sloths can hold their breath longer than dolphins",
-"Wombat poop is cube-shaped",
-"Koalas have fingerprints almost identical to humans",
-"The Eiffel Tower can be 15 cm taller during hot days",
-"A group of crows is called a murder",
-"Butterflies can taste with their feet",
-"Your stomach gets a new lining every 3-4 days",
-"A shrimp’s heart is in its head",
-"Cleopatra lived closer in time to the moon landing than to the building of the pyramids",
-"Sea horses are the only animals where males give birth",
-"Penguins propose with pebbles",
-"A bolt of lightning contains enough energy to toast 100,000 slices of bread",
-"Sloths can turn their heads almost all the way around",
-"Sharks can live up to 500 years",
-"A group of owls is called a parliament",
-"Tigers have striped skin, not just striped fur",
-"Some cats are allergic to humans",
-"Alaska is the only state whose name is on one row on a keyboard",
-"Your nose can remember 50,000 different scents",
-"A day on Mercury lasts 59 Earth days",
-"There’s a species of jellyfish that is immortal",
-"A cloud can weigh more than a million pounds",
-"The shortest war in history lasted 38 minutes",
-"Otters have a favorite rock they keep in a pouch",
-"A hummingbird’s heart beats up to 1,260 times per minute",
-"Slugs have four noses",
-"Sharks don’t have bones",
-"A group of frogs is called an army",
-"The average cloud has about 1 billion water droplets",
-"Cows have best friends and get stressed when separated",
-"A blue whale’s heart is as big as a small car",
-"Your body has enough iron to make a small nail",
-"Dragonflies can see in almost every direction at once",
-"A single strand of spaghetti is called a spaghetto",
-"An ostrich’s eye is bigger than its brain",
-"The first oranges weren’t orange, they were green",
-"Sea turtles can breathe through their butts",
-"The longest hiccuping spree lasted 68 years",
-"A group of ferrets is called a business",
-"Sharks existed 400 million years ago, before trees",
-"Butterflies can see red, green, and yellow",
-"Some turtles can breathe through their butts",
-"A group of kangaroos is called a mob"
+    const jokes = [
+      "Why don’t scientists trust atoms? Because they make up everything",
+      "Why did the scarecrow win an award? He was outstanding in his field",
+      "What do you call a fake noodle? An impasta",
+      "Why did the math book look sad? Too many problems",
+      "Why don’t skeletons fight each other? They don’t have the guts",
+      "Why did the bicycle fall over? It was two tired",
+      "Why don’t eggs tell jokes? They’d crack each other up",
+      "What do you call cheese that isn’t yours? Nacho cheese",
+      "Why did the computer go to the doctor? It caught a virus",
+      "Why was six afraid of seven? Because seven eight nine",
+      "Why did the golfer bring two pairs of pants? In case he got a hole in one",
+      "Why did the coffee file a police report? It got mugged",
+      "Why can’t your nose be 12 inches long? Because then it’d be a foot",
+      "Why did the tomato blush? It saw the salad dressing",
+      "Why did the calendar get nervous? Its days were numbered",
+      "Why don’t oysters donate to charity? They’re shellfish",
+      "Why did the cookie go to the doctor? It felt crummy",
+      "Why did the computer sit down? It needed to reboot",
+      "Why was the math lecture so long? The professor kept going off on a tangent",
+      "Why don’t vampires use social media? Too many stakes",
+      "Why did the music teacher go to jail? Too many sharp notes",
+      "Why did the phone wear glasses? It lost its contacts",
+      "Why did the belt get arrested? It was holding up a pair of pants",
+      "Why did the picture go to jail? It was framed",
+      "Why did the elevator break up with the stairs? It needed space"
     ];
 
-    function newFact() {
-      const randomIndex = Math.floor(Math.random() * facts.length);
-      document.getElementById("fact").textContent = facts[randomIndex];
-    }
+    const lifts = [
+      "You don’t have to do everything today, just one good thing",
+      "Small progress still counts",
+      "You’re allowed to take breaks without guilt",
+      "Not everything needs to be perfect to be meaningful",
+      "You’ve handled harder things than this before",
+      "Doing your best looks different every day",
+      "You don’t need permission to rest",
+      "Consistency matters more than intensity",
+      "You’re learning even when it feels slow",
+      "It’s okay to move at your own pace",
+      "Your effort matters, even if no one sees it",
+      "You’re not behind, you’re on your own timeline",
+      "Momentum starts with one small step",
+      "You can adjust the plan without quitting",
+      "Progress isn’t always loud or obvious",
+      "It’s okay to ask for help",
+      "You’re allowed to change your mind",
+      "One good choice can shift the whole day",
+      "You don’t need to have it all figured out",
+      "You’re doing better than you think",
+      "Showing up counts",
+      "You can be proud without being finished",
+      "Rest is part of the work",
+      "You’re capable, even on tired days",
+      "This moment doesn’t define the whole story"
+    ];
 
-    newFact();
+    const facts = [
+      "Octopuses have three hearts and blue blood",
+      "Honey never spoils and can last thousands of years",
+      "Bananas are berries but strawberries aren’t",
+      "A group of flamingos is called a flamboyance",
+      "Sea otters hold hands while sleeping to avoid drifting apart",
+      "Sharks existed before trees",
+      "Wombat poop is cube-shaped",
+      "There are more trees on Earth than stars in the Milky Way",
+      "Butterflies can taste with their feet",
+      "A day on Venus is longer than a year on Venus",
+      "Scotland has over 400 words for snow",
+      "Turtles can breathe through their butts",
+      "The Eiffel Tower grows in summer",
+      "Humans share about 60 percent of their DNA with bananas",
+      "Some cats are allergic to humans",
+      "There are more possible chess games than atoms in the universe",
+      "A shrimp’s heart is in its head",
+      "Sloths can hold their breath longer than dolphins",
+      "Hot water freezes faster than cold water in some cases",
+      "Koalas have fingerprints similar to humans",
+      "There are more fake flamingos in the world than real ones",
+      "A cloud can weigh over a million tons",
+      "Octopuses can recognize individual humans",
+      "The shortest war in history lasted 38 minutes",
+      "You blink about 20,000 times a day"
+    ];
+
+    function showMessage(list) {
+      const textEl = document.getElementById("text");
+      textEl.classList.add("fade");
+
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * list.length);
+        textEl.textContent = list[randomIndex];
+        textEl.classList.remove("fade");
+      }, 400);
+    }
   </script>
 
 </body>
