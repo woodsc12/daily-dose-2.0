@@ -56,12 +56,20 @@
   <div id="box">
     <h1 id="text">Choose a Vibe</h1>
 
-    <button onclick="showMessage(jokes)">😄 Make me laugh</button>
-    <button onclick="showMessage(lifts)">💛 Lift me up</button>
-    <button onclick="showMessage(facts)">🧠 Fun fact</button>
+    <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
+    <button onclick="showMessage(lifts, 'lifts')">💛 Lift me up</button>
+    <button onclick="showMessage(facts, 'facts')">🧠 Fun fact</button>
   </div>
 
   <script>
+    
+    // Keeps track of last message shown in each category
+    let lastShown = {
+      jokes: null, 
+      lifts: null, 
+      facts: null
+    };
+
     const jokes = [
       "Why don’t scientists trust atoms? Because they make up everything",
       "Why did the scarecrow win an award? He was outstanding in his field",
@@ -146,20 +154,31 @@
       "You blink about 20,000 times a day"
     ];
 
-    function showMessage(list) {
+    function showMessage(list, categoryName) {
       const textEl = document.getElementById("text");
       textEl.classList.add("fade");
 
       setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * list.length);
-        textEl.textContent = list[randomIndex];
-        textEl.classList.remove("fade");
+      let randomIndex;
+      let newMessage;
+
+      do {
+        randomIndex = Math.floor(Math.random() * list.length);
+        newMessage = list[randomIndex];
+      } while (newMessage === lastShown[categoryName] && list.length > 1)
+
+      textEl.textContent = newMessage;
+      lastShown[categoryName] = newMessage;
+
+      textEl.classList.remove("fade");
       }, 400);
     }
+    
   </script>
 
 </body>
 </html>
+
 
 
 
