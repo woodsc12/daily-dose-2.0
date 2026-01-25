@@ -8,7 +8,10 @@
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #111;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -17,9 +20,16 @@
       height: 100vh;
       text-align: center;
       padding: 20px;
+      box-sizing: border-box;
       overflow: hidden;
     }
 
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
     #box {
       max-width: 600px;
       width: 100%;
@@ -187,6 +197,7 @@
 
 </body>
 </html>
+
 
 
 
