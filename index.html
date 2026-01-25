@@ -19,12 +19,12 @@
     }
 
     #box {
-      max-width: 460px;
+      max-width: 600px;
     }
 
     h1 {
       line-height: 1.4;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       opacity: 1;
       transition: opacity 0.4s ease;
     }
@@ -32,18 +32,23 @@
     h1.fade {
       opacity: 0;
     }
-
+    #buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: no wrap;
+    }
+    
     button {
-      margin: 6px;
       padding: 10px 16px;
       font-size: 15px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      width: 140px;
       text-align: center;
-      display: inline-block;
+      white-space: nowrap;
     }
+    
   </style>
 </head>
 <body>
@@ -155,6 +160,7 @@
 
 </body>
 </html>
+
 
 
 
