@@ -171,6 +171,21 @@
       "You blink about 20,000 times a day"
     ];
 
+    function typeText(element, text, speed = 25) {
+    element.textContent = "";
+    let index = 0;
+
+    function typeNext() {
+      if (index < text.length) {
+        element.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeNext, speed);
+      }
+    }
+
+    typeNext();
+  }
+    
     function showMessage(list, categoryName) {
     const textEl = document.getElementById("text");
 
@@ -197,6 +212,7 @@
 
 </body>
 </html>
+
 
 
 
