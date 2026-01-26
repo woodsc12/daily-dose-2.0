@@ -63,7 +63,14 @@
       text-align: center;
       white-space: nowrap;
       margin-top: 5px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
+
+    button:active {
+      transform: scale(0.96);
+      box-shadow: inset 0 3px 6px rgba(0,0,0,0.35);
+    }
+    
     .cursor {
       display: inline-block;
       margin-left: 4px;
@@ -231,13 +238,5 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
