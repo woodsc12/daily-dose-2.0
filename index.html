@@ -76,7 +76,6 @@
       background: #111;
       border-radius: 50%;
       margin-left: -30px; /* adjust to align with eyes */
-      animation: blink 4s infinite;
     }
 
     #buttons {
@@ -130,7 +129,7 @@
     <h1 id="text">
       <span id="message">Choose a Vibe</span><span class="cursor">|</span></h1>
     
-    <div id="smiley">😄</div>
+    <div id="smiley"><span class="face">😄</span></div>
 
     <div id="buttons">
     <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
@@ -141,8 +140,7 @@
 
   <script>
     
-    // Keeps track of last message shown in each category
-    let lastShown = {
+    const lastShown = {
       jokes: null, 
       lifts: null, 
       facts: null
@@ -232,44 +230,62 @@
       "You blink about 20,000 times a day"
     ];
 
+    const messageEl = document.getElementById("message");
+    const textWrapper = document.getElementById("text");
+    const smiley = document.getElementById("smiley");
+    const faceSpan = smiley.querySelector(".face");
+
+    function typeText(element, text, speed = 25, callback) {
+      element.textContent = "";
+      let index = 0;
+
+      function typeNext() {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeNext, speed);
+        } else {
+          if (callback) callback();
+        }
+      }
+
+      typeNext();
+    }
+
+    function updateSmiley(categoryName) {
+      if (categoryName === 'jokes') {
+        faceSpan.textContent = '😆';
+      } else if (categoryName === 'lifts') {
+        faceSpan.textContent = '😌';
+      } else if (categoryName === 'facts') {
+        faceSpan.textContent = '🤓';
+      }
+    }
+
     function showMessage(list, categoryName) {
-      const messageEl = document.getElementById("message");
-      const textWrapper = document.getElementById("text");
-
-  // Fade out current message
+      // Fade out message
       textWrapper.classList.add("fade");
-
-      // Hide smiley before typing new message
-      const smiley = document.getElementById("smiley");
-      smiley.classList.remove("show");
+      smiley.classList.remove("show"); // hide smiley before new message
 
       setTimeout(() => {
-        let randomIndex;
-        let newMessage;
-
         // Pick a new message different from last shown
+        let newMessage, randomIndex;
         do {
           randomIndex = Math.floor(Math.random() * list.length);
           newMessage = list[randomIndex];
         } while (newMessage === lastShown[categoryName] && list.length > 1);
 
         lastShown[categoryName] = newMessage;
-    
-        // Fade message back in
-        textWrapper.classList.remove("fade");
-    
-        // Update smiley emoji based on category
-        if (categoryName === 'jokes') {
-          smiley.textContent = '😆'; // Laughing emoji
-        } else if (categoryName === 'lifts') {
-          smiley.textContent = '😌'; // Relieved face
-        } else if (categoryName === 'facts') {
-          smiley.textContent = '🤓'; // Nerdy face
-        }
 
-        // Type the message with effect
-        typeText(messageEl, newMessage, 25);
-    
+        textWrapper.classList.remove("fade");
+
+        // Update smiley for category
+        updateSmiley(categoryName);
+
+        // Type message, then show smiley
+        typeText(messageEl, newMessage, 25, () => {
+          smiley.classList.add("show");
+        });
       }, 300);
     }
 
@@ -277,6 +293,7 @@
 
 </body>
 </html>
+
 
 
 
