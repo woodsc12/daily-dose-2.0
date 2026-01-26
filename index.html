@@ -43,7 +43,47 @@
     h1.fade {
       opacity: 0;
     }
+
+    #smiley {
+      font-size: 80px;
+      margin: 20px 0;
+      opacity: 0;              /* Hidden by default */
+      transform: scale(0.8);    /* Small starting size for bounce */
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     
+    #smiley.show {
+      opacity: 1;
+      animation: bounce 1s ease forwards;
+    }
+
+    @keyframes bounce {
+      0%   { transform: scale(0.8) translateY(0); }
+      30%  { transform: scale(1.1) translateY(-10px); }
+      50%  { transform: scale(1) translateY(0); }
+      70%  { transform: scale(1.05) translateY(-5px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+
+    #smiley::after {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #111;
+      border-radius: 50%;
+      margin-left: -30px; /* adjust to align with eyes */
+      animation: blink 4s infinite;
+    }
+
+    @keyframes blink {
+      0%, 5%, 95%, 100% { transform: scaleY(1); }
+      2.5%, 97.5%       { transform: scaleY(0.1); }
+    }
+
     #buttons {
       display: flex;
       justify-content: center;
@@ -95,7 +135,7 @@
     <h1 id="text">
       <span id="message">Choose a Vibe</span><span class="cursor">|</span></h1>
     
-    /* Smiley container */
+    // Smiley container
     <div id="smiley">😄</div>
 
     <div id="buttons">
@@ -198,47 +238,54 @@
       "You blink about 20,000 times a day"
     ];
 
-    function typeText(element, text, speed = 25) {
-    element.textContent = "";
-    let index = 0;
+    const smiley = document.getElementById("smiley");
 
-    function typeNext() {
-      if (index < text.length) {
-        element.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeNext, speed);
+    function typeText(element, text, speed = 25) {
+      element.textContent = "";
+      smiley.classList.remove("show"); // hide smiley at start
+      let index = 0;
+
+      function typeNext() {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          index++;
+          setTimeout(typeNext, speed);
+        } else {
+          // Show smiley after typing finishes
+          smiley.classList.add("show");
+        }
       }
+    
+      typeNext();
+    }
+  
+    function showMessage(list, categoryName) {
+      const messageEl = document.getElementById("message");
+      const textWrapper = document.getElementById("text");
+    
+      textWrapper.classList.add("fade");
+    
+      setTimeout(() => {
+        let randomIndex;
+        let newMessage;
+    
+        do {
+          randomIndex = Math.floor(Math.random() * list.length);
+          newMessage = list[randomIndex];
+        } while (newMessage === lastShown[categoryName] && list.length > 1);
+    
+        lastShown[categoryName] = newMessage;
+    
+        textWrapper.classList.remove("fade");
+        typeText(messageEl, newMessage, 25);
+      }, 300);
     }
 
-    typeNext();
-  }
-
-  function showMessage(list, categoryName) {
-    const messageEl = document.getElementById("message");
-    const textWrapper = document.getElementById("text");
-
-    textWrapper.classList.add("fade");
-
-    setTimeout(() => {
-      let randomIndex;
-      let newMessage;
-
-      do {
-        randomIndex = Math.floor(Math.random() * list.length);
-        newMessage = list[randomIndex];
-      } while (newMessage === lastShown[categoryName] && list.length > 1);
-
-      lastShown[categoryName] = newMessage;
-
-      textWrapper.classList.remove("fade");
-      typeText(messageEl, newMessage, 25);
-    }, 300);
-  }
-    
   </script>
 
 </body>
 </html>
+
 
 
 
