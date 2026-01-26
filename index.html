@@ -62,6 +62,22 @@
       text-align: center;
       white-space: nowrap;
       margin-top: 5px;
+
+    .cursor {
+      display: inline-block;
+      margin-left: 4px;
+      animation: blink 1s step-start infinite;
+      opacity: 1;
+    }
+    
+    @keyframes blink {
+      50% {
+        opacity: 0;
+  }
+}
+    .fade .cursor {
+      opacity: 0;
+    }
     }
     
   </style>
@@ -69,7 +85,9 @@
 <body>
 
   <div id="box">
-    <h1 id="text">Choose a Vibe</h1>
+    <h1 id="text">
+      <span id="message">Choose a Vibe</span>span><span class="cursor">|</span>
+    </h1>
     
     <div id="buttons">
     <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
@@ -171,7 +189,7 @@
       "You blink about 20,000 times a day"
     ];
 
-    function typeText(element, text, speed = 30) {
+    function typeText(element, text, speed = 25) {
     element.textContent = "";
     let index = 0;
 
@@ -185,11 +203,12 @@
 
     typeNext();
   }
-    
-    function showMessage(list, categoryName) {
-    const textEl = document.getElementById("text");
 
-    textEl.classList.add("fade");
+  function showMessage(list, categoryName) {
+    const messageEl = document.getElementById("message");
+    const textWrapper = document.getElementById("text");
+
+    textWrapper.classList.add("fade");
 
     setTimeout(() => {
       let randomIndex;
@@ -202,9 +221,8 @@
 
       lastShown[categoryName] = newMessage;
 
-      textEl.classList.remove("fade");
-      typeText(textEl, newMessage, 30); // typing speed here
-
+      textWrapper.classList.remove("fade");
+      typeText(messageEl, newMessage, 25);
     }, 300);
   }
     
@@ -212,6 +230,7 @@
 
 </body>
 </html>
+
 
 
 
