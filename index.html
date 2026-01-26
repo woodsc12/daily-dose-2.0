@@ -172,68 +172,31 @@
     ];
 
     function showMessage(list, categoryName) {
-      const textEl = document.getElementById("text");
-      textEl.classList.add("fade");
+    const textEl = document.getElementById("text");
 
-      setTimeout(() => {
+    textEl.classList.add("fade");
+
+    setTimeout(() => {
       let randomIndex;
       let newMessage;
 
       do {
         randomIndex = Math.floor(Math.random() * list.length);
         newMessage = list[randomIndex];
-      } while (newMessage === lastShown[categoryName] && list.length > 1)
+      } while (newMessage === lastShown[categoryName] && list.length > 1);
 
-      textEl.textContent = newMessage;
       lastShown[categoryName] = newMessage;
 
       textEl.classList.remove("fade");
-      }, 400);
-    }
+      typeText(textEl, newMessage, 25); // typing speed here
+
+    }, 300);
+  }
     
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
