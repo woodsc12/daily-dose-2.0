@@ -125,15 +125,18 @@
     <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
     <button onclick="showMessage(lifts, 'lifts')">💛 Lift me up</button>
     <button onclick="showMessage(facts, 'facts')">🧠 Fun fact</button>
+    <button onclick="showMessage(reflections, 'reflections')">🧘 Reflect</button>
     </div>
   </div>
 
   <script>
     
+    /* Prevent message from repeating back to back */
     const lastShown = {
       jokes: null, 
       lifts: null, 
-      facts: null
+      facts: null,
+      reflections: null
     };
 
     const jokes = [
@@ -295,6 +298,59 @@
       "Your body contains enough carbon to make thousands of pencils"
     ];
 
+    const reflections = [
+      "What do I actually need right now?",
+      "What’s one thing that went okay today?",
+      "What can wait until tomorrow?",
+      "What am I holding onto that I can release?",
+      "What would make today feel complete?",
+      "What am I avoiding, and why?",
+      "What’s one small win I might be overlooking?",
+      "What would I tell a friend in this situation?",
+      "What feels heavy right now?",
+      "What feels lighter than it did before?",
+      "What did I learn today, even unintentionally?",
+      "What am I grateful for in this moment?",
+      "What’s within my control right now?",
+      "What’s one thing I can simplify?",
+      "What’s draining my energy today?",
+      "What’s giving me energy today?",
+      "What deserves my attention next?",
+      "What doesn’t need my attention anymore?",
+      "What emotion am I feeling beneath the surface?",
+      "What expectation can I loosen?",
+      "What’s something I handled better than before?",
+      "What am I proud of myself for?",
+      "What’s one kind thing I can do for myself?",
+      "What’s been on my mind lately?",
+      "What’s one thing I can forgive myself for?",
+      "What would rest look like right now?",
+      "What’s one thing I don’t have to solve today?",
+      "What assumption might I be making?",
+      "What matters most in this moment?",
+      "What am I resisting?",
+      "What would help me feel grounded?",
+      "What’s one truth I can remind myself of?",
+      "What’s something I’ve outgrown?",
+      "What’s one thing I can do more gently?",
+      "What’s actually going well?",
+      "What do I need less of right now?",
+      "What do I need more of right now?",
+      "What’s one thing I can let be imperfect?",
+      "What’s worth slowing down for?",
+      "What’s one thought I can question?",
+      "What’s one thing I can appreciate today?",
+      "What’s one thing I’ve already survived?",
+      "What’s one thing I can trust myself with?",
+      "What’s one thing I can leave unfinished?",
+      "What would make tomorrow easier?",
+      "What’s something I don’t say out loud enough?",
+      "What feels uncertain, and that’s okay?",
+      "What’s one step forward I can take?",
+      "What’s one thing I can stop carrying?",
+      "What’s enough for today?"
+      ];
+
     /* Cache elements for displaying corresponding emoji */
     const messageEl = document.getElementById("message");
     const textWrapper = document.getElementById("text");
@@ -327,6 +383,8 @@
         faceSpan.textContent = '😌';
       } else if (categoryName === 'facts') {
         faceSpan.textContent = '🤓';
+      } else if (categoryName === 'reflections') {
+        faceSpan.textContent = '🧘';
       }
     }
 
@@ -361,6 +419,7 @@
 
 </body>
 </html>
+
 
 
 
