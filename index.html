@@ -121,15 +121,21 @@
     
     <div id="smiley"><span class="face">😄</span></div>
 
+    <div id="insight" style="display:none; margin-top:15px; font-size:15px; opacity:0.9;"></div>
+    
     <div id="buttons">
     <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
     <button onclick="showMessage(lifts, 'lifts')">💛 Lift me up</button>
     <button onclick="showMessage(facts, 'facts')">🧠 Fun fact</button>
     <button onclick="showMessage(reflections, 'reflections')">🧘 Reflect</button>
+    <button id="insightBtn" onclick="getInsight()" style="display:none;">🔍 Dig deeper</button>
     </div>
   </div>
 
   <script>
+
+    /* Track current reflection */
+    let currentReflection = null;
     
     /* Prevent message from repeating back to back */
     const lastShown = {
@@ -411,19 +417,46 @@
         // Type message, then show smiley
         typeText(messageEl, newMessage, 25, () => {
           smiley.classList.add("show");
+
+          if (categoryName === "reflections") {
+            currentReflection = newMessage;
+            document.getElementById("insightBtn").style.display = "inline-block";
+          } else {
+            document.getElementById("insightBtn").sytle.display = "none";
+            document.getElementById("insight").style.display = "none";
+          }
         });
       }, 300);
     }
+    /* Sends reflection text to backend, displays insight message, handles errors */
+    async function getInsight() {
+      if (!currentReflection) return;
 
+      const insightEl = document.getElementById("insight");
+      insightEl.style.display = "block";
+      insightEl.textContent = "Thinking…";
+
+      try {
+        const response = await fetch("/api/insight", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ reflection: currentReflection })
+        });
+
+        const data = await response.json();
+        insightEl.textContent = data.insight;
+      } catch (err) {
+        insightEl.textContent = "Unable to get insight right now.";
+      }
+    }
+
+
+
+    
   </script>
 
 </body>
 </html>
-
-
-
-
-
 
 
 
