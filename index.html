@@ -428,35 +428,12 @@
         });
       }, 300);
     }
-    /* Sends reflection text to backend (server.js), displays insight message, handles errors */
-    async function getInsight() {
-      if (!currentReflection) return;
-
-      const insightEl = document.getElementById("insight");
-      insightEl.style.display = "block";
-      insightEl.textContent = "Thinking…";
-
-      try {
-        const response = await fetch("/api/insight", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ reflection: currentReflection })
-        });
-
-        const data = await response.json();
-        insightEl.textContent = data.insight;
-      } catch (err) {
-        insightEl.textContent = "Unable to get insight right now.";
-      }
-    }
-
-
-
     
   </script>
 
 </body>
 </html>
+
 
 
 
