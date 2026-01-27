@@ -111,8 +111,6 @@
       box-shadow: inset 0 3px 6px rgba(0,0,0,0.35);
     }
     
-    
-    
   </style>
 </head>
 <body>
@@ -163,7 +161,32 @@
       "Why did the phone wear glasses? It lost its contacts",
       "Why did the belt get arrested? It was holding up a pair of pants",
       "Why did the picture go to jail? It was framed",
-      "Why did the elevator break up with the stairs? It needed space"
+      "Why did the elevator break up with the stairs? It needed space",
+      "Why did the programmer quit his job? Because he didn’t get arrays",
+      "Why did the math book visit the therapist? It had too many unresolved issues",
+      "Why don’t programmers like nature? Too many bugs",
+      "Why did the scarecrow get promoted? He was outstanding in his field",
+      "Why did the keyboard break up with the computer? It felt unappreciated",
+      "Why did the golfer bring an extra sock? In case he got a hole in one",
+      "Why did the stadium get hot after the game? All the fans left",
+      "Why don’t cows have hobbies? They’re always moo-dy",
+      "Why did the snowman call in sick? He had a meltdown",
+      "Why did the bank hire a gardener? To help with interest",
+      "Why did the computer sneeze? It caught a byte",
+      "Why did the pencil stop working? It lost its point",
+      "Why did the cookie sit in the sun? It wanted to be a smart cookie",
+      "Why did the music note go to school? To improve its pitch",
+      "Why did the fish get bad grades? It was below C level",
+      "Why did the light bulb fail the test? It wasn’t very bright",
+      "Why did the clock get kicked out of class? It kept ticking",
+      "Why did the math student bring a ladder? To reach higher levels",
+      "Why did the shoe go to therapy? It had too much sole-searching",
+      "Why did the printer get glasses? It couldn’t focus on the text",
+      "Why did the sandwich go to the gym? To get better buns",
+      "Why did the computer stay calm? It had good cache control",
+      "Why did the tree get a timeout? It was acting shady",
+      "Why did the phone go on a diet? Too many cookies",
+      "Why did the email break up with the inbox? Too many attachments"
     ];
 
     const lifts = [
@@ -191,7 +214,32 @@
       "You can be proud without being finished",
       "Rest is part of the work",
       "You’re capable, even on tired days",
-      "This moment doesn’t define the whole story"
+      "This moment doesn’t define the whole story",
+      "You’re allowed to start small",
+      "Progress can be quiet and still be real",
+      "You don’t have to rush what’s growing",
+      "Some days, steady is a win",
+      "It’s okay if today is about maintenance, not progress",
+      "You can pause without losing momentum",
+      "One task done is better than ten avoided",
+      "You’re not failing—you’re figuring it out",
+      "Energy comes and goes; commitment carries you through",
+      "You don’t owe productivity to anyone",
+      "It’s okay to reset and try again",
+      "Even imperfect action moves you forward",
+      "You can take today as it comes",
+      "Effort adds up, even when it feels invisible",
+      "You’re building something, one step at a time",
+      "Slow days still count as days",
+      "You’re allowed to protect your peace",
+      "You can do hard things gently",
+      "Today’s version of you is enough",
+      "You don’t have to earn rest",
+      "Clarity often comes after action",
+      "You’re making room for better days",
+      "One breath, one step, one choice",
+      "You’re not starting over—you’re continuing",
+      "Keep going, even if it’s quietly"
     ];
 
     const facts = [
@@ -219,14 +267,41 @@
       "A cloud can weigh over a million tons",
       "Octopuses can recognize individual humans",
       "The shortest war in history lasted 38 minutes",
-      "You blink about 20,000 times a day"
+      "You blink about 20,000 times a day",
+      "Venus flytraps can count how many times their trigger hairs are touched",
+      "A single teaspoon of honey is the lifetime work of about 12 bees",
+      "Neutrinos pass through your body by the trillions every second",
+      "Oxford University is older than the Aztec Empire",
+      "Some metals explode when they touch water",
+      "Saturn could float in water if a bathtub big enough existed",
+      "Your brain uses about 20 percent of your body’s energy",
+      "A cockroach can live without its head for about a week",
+      "There are more neurons in your brain than stars in our galaxy",
+      "The human body glows faintly due to biochemical reactions",
+      "A bolt of lightning is hotter than the surface of the sun",
+      "Rats laugh when they’re tickled",
+      "Jellyfish have existed for over 500 million years",
+      "Your stomach gets a new lining every few days",
+      "Ants don’t have lungs",
+      "The smell of rain has a name: petrichor",
+      "Some turtles can live over 150 years",
+      "A day on Mercury is longer than its year",
+      "Plants can recognize their siblings",
+      "Humans can have extra ribs",
+      "Butterflies remember being caterpillars",
+      "Your bones are stronger than steel by weight",
+      "Sound travels four times faster in water than air",
+      "Elephants can recognize themselves in mirrors",
+      "Your body contains enough carbon to make thousands of pencils"
     ];
 
+    /* Cache elements for displaying corresponding emoji */
     const messageEl = document.getElementById("message");
     const textWrapper = document.getElementById("text");
     const smiley = document.getElementById("smiley");
     const faceSpan = smiley.querySelector(".face");
 
+    /* Typing effect */
     function typeText(element, text, speed = 25, callback) {
       element.textContent = "";
       let index = 0;
@@ -243,7 +318,8 @@
 
       typeNext();
     }
-
+    
+    /* Smiley based on category selected */
     function updateSmiley(categoryName) {
       if (categoryName === 'jokes') {
         faceSpan.textContent = '😆';
@@ -285,6 +361,7 @@
 
 </body>
 </html>
+
 
 
 
