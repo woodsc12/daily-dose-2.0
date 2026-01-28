@@ -123,7 +123,24 @@
 
     <div id="insight" style="display:none; margin-top:15px; font-size:15px; opacity:0.9;"></div>
 
-    <button id="digDeeperBtn" style="display:none; font-size:12px; padding:5px 10px; margin-bottom:10px;" onclick="digDeeper()">🧐 Dig Deeper</button>
+<button
+  id="digDeeperBtn"
+  onclick="digDeeper()"
+  style="
+    display:none;
+    font-size:11px;
+    padding:3px 8px;
+    margin:4px 0 0 0;
+    background:#eef2f7;
+    color:#444;
+    border:1px solid #cfd6e0;
+    border-radius:6px;
+    cursor:pointer;
+    line-height:1.2;
+  "
+>
+  🔎 Dig deeper
+</button>
 
     <div id="buttons">
     <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
@@ -415,7 +432,7 @@
         // Update smiley for category
         updateSmiley(categoryName);
         
-        // Type message, then show smiley
+        // Type message, then show smiley. If reflections category selected, show digdeeper button
         typeText(messageEl, newMessage, 25, () => {
           smiley.classList.add("show");
 
@@ -434,6 +451,7 @@
 
 </body>
 </html>
+
 
 
 
