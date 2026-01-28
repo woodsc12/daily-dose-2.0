@@ -413,6 +413,10 @@
     }
 
     function showMessage(list, categoryName) {
+      // Always hide dig deeper when a new category is selected
+      document.getElementById("digDeeperBtn").style.display = "none";
+      document.getElementById("insight").style.display = "none";
+      
       // Fade out message
       textWrapper.classList.add("fade");
       smiley.classList.remove("show"); // hide smiley before new message
@@ -440,7 +444,7 @@
             currentReflection = newMessage;
             document.getElementById("digDeeperBtn").style.display = "inline-block";
           } else {
-            document.getElementById("digDeeperBtn").sytle.display = "none";
+            document.getElementById("digDeeperBtn").style.display = "none";
             document.getElementById("insight").style.display = "none";
           }
         });
@@ -451,6 +455,7 @@
 
 </body>
 </html>
+
 
 
 
