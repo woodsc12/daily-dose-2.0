@@ -127,7 +127,7 @@
       font-size: 14px;
       opacity: 0;
       transition: opacity 2.5s ease-in-out;
-      transition-delay: 0.15s;
+      transition-delay: 0.05s;
       margin-bottom: 8px;
     }
 
@@ -494,6 +494,7 @@
 
     function showMessage(list, categoryName) {
       // Always hide dig deeper when a new category is selected
+      welcomeLine.classList.remove("show"); // Hide welcome message upon selecting category
       document.getElementById("digDeeperBtn").style.display = "none";
       document.getElementById("insight").style.display = "none"; 
       
@@ -535,6 +536,7 @@
 
 </body>
 </html>
+
 
 
 
