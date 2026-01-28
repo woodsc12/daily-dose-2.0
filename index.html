@@ -415,23 +415,15 @@
         // Update smiley for category
         updateSmiley(categoryName);
         
-        // Show dig deeper button only for reflections
-        const digBtn = document.getElementById("digDeeperBtn");
-        if (categoryName === "reflections") {
-          digBtn.style.display = "inline-block";
-        } else {
-          digBtn.style.display = "none";
-        }
-
         // Type message, then show smiley
         typeText(messageEl, newMessage, 25, () => {
           smiley.classList.add("show");
 
           if (categoryName === "reflections") {
             currentReflection = newMessage;
-            document.getElementById("insightBtn").style.display = "inline-block";
+            document.getElementById("digDeeperBtn").style.display = "inline-block";
           } else {
-            document.getElementById("insightBtn").sytle.display = "none";
+            document.getElementById("digDeeperBtn").sytle.display = "none";
             document.getElementById("insight").style.display = "none";
           }
         });
@@ -442,6 +434,7 @@
 
 </body>
 </html>
+
 
 
 
