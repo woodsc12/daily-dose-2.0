@@ -426,8 +426,10 @@
     if (userName) {
       // Already stored → greet and hide input
       welcomeLine.textContent = `Welcome back ${userName}!`;
-      welcomeLine.classList.add("show");
-      console.log(welcomeLine.className);
+      setTimeout(() => {
+        welcomeLine.classList.add("show");
+      }, 50);
+
       messageEl.textContent = `Choose a Vibe`;
       greetingContainer.style.display = "none";
       
@@ -532,6 +534,7 @@
 
 </body>
 </html>
+
 
 
 
