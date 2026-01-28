@@ -387,7 +387,6 @@
     const smiley = document.getElementById("smiley");
     const faceSpan = smiley.querySelector(".face");
     
-    
     /* Typing effect */
     function typeText(element, text, typingSpeed = 25, callback) {
       element.textContent = "";
@@ -397,15 +396,15 @@
         if (index < text.length) {
           element.textContent += text.charAt(index);
           index++;
-          setTimeout(typeNext, typingSpeed);
+          setTimeout(typeNext, typingSpeed); // use typingSpeed here
         } else {
           if (callback) callback();
         }
       }
-
+    
       typeNext();
     }
-    
+
     /* Smiley based on category selected */
     function updateSmiley(categoryName) {
       if (categoryName === 'jokes') {
@@ -462,6 +461,7 @@
 
 </body>
 </html>
+
 
 
 
