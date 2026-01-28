@@ -122,13 +122,14 @@
     <div id="smiley"><span class="face">😄</span></div>
 
     <div id="insight" style="display:none; margin-top:15px; font-size:15px; opacity:0.9;"></div>
-    
+
+    <button id="digDeeperBtn" style="display:none; font-size:12px; padding:5px 10px; margin-bottom:10px;" onclick="digDeeper()">🧐 Dig Deeper</button>
+
     <div id="buttons">
     <button onclick="showMessage(jokes, 'jokes')">😄 Make me laugh</button>
     <button onclick="showMessage(lifts, 'lifts')">💛 Lift me up</button>
     <button onclick="showMessage(facts, 'facts')">🧠 Fun fact</button>
     <button onclick="showMessage(reflections, 'reflections')">🧘 Reflect</button>
-    <button id="insightBtn" onclick="getInsight()" style="display:none;">🔍 Dig deeper</button>
     </div>
   </div>
 
@@ -413,6 +414,14 @@
 
         // Update smiley for category
         updateSmiley(categoryName);
+        
+        // Show dig deeper button only for reflections
+        const digBtn = document.getElementById("digDeeperBtn");
+        if (categoryName === "reflections") {
+          digBtn.style.display = "inline-block";
+        } else {
+          digBtn.style.display = "none";
+        }
 
         // Type message, then show smiley
         typeText(messageEl, newMessage, 25, () => {
@@ -433,6 +442,7 @@
 
 </body>
 </html>
+
 
 
 
