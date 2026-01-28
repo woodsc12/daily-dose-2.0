@@ -443,7 +443,7 @@
         updateSmiley(categoryName);
         
         // Type message, then show smiley. If reflections category selected, show digdeeper button
-        typeText(messageEl, newMessage, typingSpeed, () => {
+        typeText(messageEl, newMessage, 25, () => {
           smiley.classList.add("show");
           
           if (categoryName === "reflections") {
@@ -461,6 +461,7 @@
 
 </body>
 </html>
+
 
 
 
