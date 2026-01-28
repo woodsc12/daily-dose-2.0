@@ -24,6 +24,17 @@
     }
     
     #box {
+
+    <div id="greetingInputContainer" style="margin-bottom:15px;">
+      <input
+        id="userNameInput"
+        type="text"
+        placeholder="What is your name..."
+        style="padding:6px 10px; border-radius:6px; border:1px solid #ccc; font-size:14px;"
+      >
+      <button id="submitNameBtn" style="padding:6px 10px; margin-left:5px; cursor:pointer; border-radius:6px;">Submit</button>
+    </div>
+
       max-width: 600px;
       width: 100%;
       text-align: center;
@@ -157,19 +168,6 @@
   </div>
 
   <script>
-    
-    let userName = localStorage.getItem("userName");
-    
-    if (!userName) {
-      userName = prompt("Hi! What's your name?");
-      if (userName) {
-        localStorage.setItem("userName", userName);
-      }
-    }
-    
-    if (userName) {
-      messageEl.textContent = `Welcome back, ${userName}! Choose a vibe`;
-    }
     
     /* Track current reflection */
     let currentReflection = null;
@@ -399,7 +397,37 @@
     const textWrapper = document.getElementById("text");
     const smiley = document.getElementById("smiley");
     const faceSpan = smiley.querySelector(".face");
+
+    const greetingContainer = document.getElementById("greetingInputContainer");
+    const userNameInput = document.getElementById("userNameInput");
+    const submitNameBtn = document.getElementById("submitNameBtn");
     
+    let userName = localStorage.getItem("userName");
+    
+    if (userName) {
+      // Already stored → greet and hide input
+      messageEl.textContent = `Welcome back, ${userName}! Choose a vibe`;
+      greetingContainer.style.display = "none";
+    }
+    
+    // Handle user submission
+    submitNameBtn.addEventListener("click", () => {
+      const inputName = userNameInput.value.trim();
+      if (inputName) {
+        userName = inputName;
+        localStorage.setItem("userName", userName);
+        messageEl.textContent = `Welcome, ${userName}! Choose a vibe`;
+        greetingContainer.style.display = "none";
+      }
+    });
+    
+    // Optional: allow pressing Enter key
+    userNameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        submitNameBtn.click();
+      }
+    });
+
     /* Typing effect */
     function typeText(element, text, typingSpeed = 25, callback) {
       element.textContent = "";
@@ -474,28 +502,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
