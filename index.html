@@ -386,9 +386,10 @@
     const textWrapper = document.getElementById("text");
     const smiley = document.getElementById("smiley");
     const faceSpan = smiley.querySelector(".face");
-
+    const typingSpeed = 25;
+    
     /* Typing effect */
-    function typeText(element, text, speed = 25, callback) {
+    function typeText(element, text, typingSpeed = 25, callback) {
       element.textContent = "";
       let index = 0;
 
@@ -443,7 +444,7 @@
         updateSmiley(categoryName);
         
         // Type message, then show smiley. If reflections category selected, show digdeeper button
-        typeText(messageEl, newMessage, () => {
+        typeText(messageEl, newMessage, typingSpeed, () => {
           smiley.classList.add("show");
           
           if (categoryName === "reflections") {
@@ -461,6 +462,7 @@
 
 </body>
 </html>
+
 
 
 
