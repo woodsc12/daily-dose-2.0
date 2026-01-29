@@ -478,6 +478,29 @@
       typeNext();
     }
 
+    function speakText(text) {
+      if (!("speechSynthesis" in window)) return;
+    
+      // Stop any previous speech
+      speechSynthesis.cancel();
+    
+      const utterance = new SpeechSynthesisUtterance(text);
+    
+      utterance.rate = 0.95;   // speed (0.8–1.1 is natural)
+      utterance.pitch = 1;     // voice pitch
+      utterance.volume = 0.8;  // volume
+    
+      // Optional: choose a nicer voice if available
+      const voices = speechSynthesis.getVoices();
+      const preferred = voices.find(v =>
+        v.name.includes("Google") || v.name.includes("Natural")
+      );
+      if (preferred) utterance.voice = preferred;
+    
+      speechSynthesis.speak(utterance);
+    }
+
+    
     /* Smiley based on category selected */
     function updateSmiley(categoryName) {
       if (categoryName === 'jokes') {
@@ -517,6 +540,8 @@
         updateSmiley(categoryName);
         
         // Type message, then show smiley. If reflections category selected, show digdeeper button
+        speakText(newMessage); // start voice
+        
         typeText(messageEl, newMessage, 45, () => {
           smiley.classList.add("show");
           
@@ -535,6 +560,7 @@
 
 </body>
 </html>
+
 
 
 
