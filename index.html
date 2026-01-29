@@ -461,7 +461,7 @@
     });
 
     /* Typing effect */
-    function typeText(element, text, typingSpeed = 35, callback) {
+    function typeText(element, text, typingSpeed = 45, callback) {
       element.textContent = "";
       let index = 0;
 
@@ -517,7 +517,7 @@
         updateSmiley(categoryName);
         
         // Type message, then show smiley. If reflections category selected, show digdeeper button
-        typeText(messageEl, newMessage, 35, () => {
+        typeText(messageEl, newMessage, 45, () => {
           smiley.classList.add("show");
           
           if (categoryName === "reflections") {
@@ -535,6 +535,7 @@
 
 </body>
 </html>
+
 
 
 
