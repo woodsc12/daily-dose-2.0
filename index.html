@@ -181,6 +181,15 @@
   </div>
 
   <script>
+
+    let availableVoices = [];
+
+    function loadVoices() {
+      availableVoices = speechSynthesis.getVoices();
+    }
+
+    speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices();
     
     /* Track current reflection */
     let currentReflection = null;
@@ -481,25 +490,30 @@
     function speakText(text) {
       if (!("speechSynthesis" in window)) return;
     
-      // Stop any previous speech
       speechSynthesis.cancel();
     
       const utterance = new SpeechSynthesisUtterance(text);
     
-      utterance.rate = 0.95;   // speed (0.8–1.1 is natural)
-      utterance.pitch = 1;     // voice pitch
-      utterance.volume = 0.8;  // volume
+      // Natural pacing
+      utterance.rate = 0.9;
+      utterance.pitch = 1.05;
+      utterance.volume = 0.85;
     
-      // Optional: choose a nicer voice if available
-      const voices = speechSynthesis.getVoices();
-      const preferred = voices.find(v =>
-        v.name.includes("Google") || v.name.includes("Natural")
-      );
-      if (preferred) utterance.voice = preferred;
+      // Prefer smoother voices
+      const preferredVoice =
+        availableVoices.find(v => v.name.includes("Google US English")) ||
+        availableVoices.find(v => v.name.includes("Google UK")) ||
+        availableVoices.find(v => v.name.includes("Aria")) ||
+        availableVoices.find(v => v.name.includes("Jenny")) ||
+        availableVoices.find(v => v.name.includes("Samantha")) ||
+        availableVoices.find(v => v.lang === "en-US");
+    
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
     
       speechSynthesis.speak(utterance);
     }
-
     
     /* Smiley based on category selected */
     function updateSmiley(categoryName) {
@@ -560,6 +574,7 @@
 
 </body>
 </html>
+
 
 
 
