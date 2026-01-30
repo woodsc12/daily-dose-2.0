@@ -37,7 +37,7 @@
       flex-direction: column;
       height: 70vh;
 
-      padding-top: 10px; 
+      padding-top: 0px; 
     }
 
     h1 {
@@ -120,38 +120,12 @@
       box-shadow: inset 0 3px 6px rgba(0,0,0,0.35);
     }
 
-    /* Welcome line CSS */
-    #welcomeLine {
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 2.5s ease-in-out;
-      transition-delay: 0.05s;
-      margin-bottom: 8px;
-    }
-
-    #welcomeLine.show {
-      opacity: 0.75;
-    }
-
   </style>
 </head>
 <body>
 
   <div id="box">
     
-    <!-- Welcome line HTML -->
-    <div id="welcomeLine"></div>
-
-    <div id="greetingInputContainer" style="margin-bottom:15px;">
-      <input
-        id="userNameInput"
-        type="text"
-        placeholder="What is your name..."
-        style="padding:6px 10px; border-radius:6px; border:1px solid #ccc; font-size:14px;"
-      >
-      <button id="submitNameBtn" style="padding:6px 10px; margin-left:5px; cursor:pointer; border-radius:6px;">Submit</button>
-    </div>
-
     <h1 id="text">
       <span id="message">Choose a Vibe</span><span class="cursor">|</span></h1>
     <div id="smiley"><span class="face">😄</span></div>
@@ -412,54 +386,12 @@
     const smiley = document.getElementById("smiley");
     const faceSpan = smiley.querySelector(".face");
 
-    const greetingContainer = document.getElementById("greetingInputContainer");
-    const userNameInput = document.getElementById("userNameInput");
-    const submitNameBtn = document.getElementById("submitNameBtn");
 
-    const welcomeLine = document.getElementById("welcomeLine");
+
 
     const digDeeperBtn = document.getElementById("digDeeperBtn");
     digDeeperBtn.style.display = "none";
 
-    
-    let userName = localStorage.getItem("userName");
-    
-    if (userName) {
-      // Already stored → greet and hide input
-      welcomeLine.textContent = `Welcome back ${userName}!`;
-      setTimeout(() => {
-        welcomeLine.classList.add("show");
-      }, 50);
-
-      messageEl.textContent = `Choose a Vibe`;
-      greetingContainer.style.display = "none";
-      
-    }
-    
-    // Handle user submission
-    submitNameBtn.addEventListener("click", () => {
-      const inputName = userNameInput.value.trim();
-      if (inputName) {
-        userName = inputName;
-        localStorage.setItem("userName", userName);
-    
-        // Welcome line (Step B)
-        welcomeLine.textContent = `Welcome ${userName}!`;
-        welcomeLine.classList.add("show");
-    
-        // Main message
-        messageEl.textContent = "Choose a Vibe";
-        greetingContainer.style.display = "none";
-      }
-    });
-
-    
-    // Optional: allow pressing Enter key
-    userNameInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        submitNameBtn.click();
-      }
-    });
 
     /* Typing effect */
     function typeText(element, text, typingSpeed = 50, callback) {
@@ -522,12 +454,11 @@
 
     function showMessage(list, categoryName) {
       // Always hide dig deeper when a new category is selected
-      welcomeLine.classList.remove("show"); // Hide welcome message upon selecting category
+      
       document.getElementById("digDeeperBtn").style.display = "none";
       document.getElementById("insight").style.display = "none"; 
       
       // Fade out message
-      textWrapper.classList.add("fade");
       smiley.classList.remove("show"); // hide smiley before new message
 
       setTimeout(() => {
@@ -539,8 +470,6 @@
         } while (newMessage === lastShown[categoryName] && list.length > 1);
 
         lastShown[categoryName] = newMessage;
-
-        textWrapper.classList.remove("fade");
 
         // Update smiley for category
         updateSmiley(categoryName);
@@ -566,6 +495,7 @@
 
 </body>
 </html>
+
 
 
 
